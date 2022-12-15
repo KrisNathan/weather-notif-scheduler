@@ -13,8 +13,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-async fn troll() -> Result<String, reqwest::Error> {
-    let xd = reqwest::get("http://127.0.0.1:8080/100/100")
+async fn troll() -> Result<String, Box<dyn std::error::Error>> {
+    let xd = reqwest::get(format!("{}", std::env::var("URL")?))
         .await?
         .text()
         .await?;
